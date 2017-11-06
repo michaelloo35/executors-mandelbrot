@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 
 public class Mandelbrot extends JFrame {
 
-    private final int MAX_ITER = 2000;
+    private final int MAX_ITER = 10000;
     private final double ZOOM = 550;
     private BufferedImage I;
     private double zx, zy, cX, cY, tmp;
@@ -23,11 +23,11 @@ public class Mandelbrot extends JFrame {
         // Defining pretty colours table
         int[] colors = new int[MAX_ITER];
         for (int i = 0; i < MAX_ITER; i++) {
-            colors[i] = Color.HSBtoRGB(i / 256f, 155, i / (i + 8f));
+            colors[i] = Color.HSBtoRGB(i / 256f, 15, i / (i + 8f));
         }
 
         // Initialization of result structure and executor
-        ExecutorService executor = Executors.newCachedThreadPool();
+        ExecutorService executor = Executors.newFixedThreadPool(20);
         java.util.List<Future<MandelbrotTuple>> resultList = new ArrayList<>(getWidth() * getHeight());
 
 
